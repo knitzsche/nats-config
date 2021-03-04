@@ -1,0 +1,12 @@
+#!/bin/bash
+
+PWORD=`$SNAP/usr/bin/pwgen 10 1`
+OUT=$SNAP_DATA/share/nats.cfg
+mkdir -p `dirname $OUT`
+
+cat <<EOF >$OUT
+listen: 127.0.0.1:4222
+authorization: {
+    token: "${PWORD}"
+}
+EOF

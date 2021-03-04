@@ -1,0 +1,22 @@
+name: nats-config
+base: core20
+version: '0.1'
+summary: Provide a nats.cfg file to nats
+description: |
+  Optionally generate and share a simple nats.cfg file for nats
+  snap. The nats snap only uses it if the content share is connected. 
+
+grade: stable
+confinement: strict
+
+slots:
+  nats-config:
+    interface: content
+    content: nats-cfg
+    source:
+      read: 
+        - $SNAP_DATA/share
+parts:
+  my-part:
+    plugin: nil
+    stage-packages: [ pwgen ]
